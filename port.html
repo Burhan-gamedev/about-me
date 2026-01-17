@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burhan | Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #020617;
+            --card-bg: rgba(30, 41, 59, 0.5);
+            --accent: #38bdf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --nav-bg: rgba(2, 6, 23, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--nav-bg);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .badge {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 24px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 15px;
+            line-height: 1.1;
+        }
+
+        .hero h1 span { color: var(--accent); }
+
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .hero-btns {
+            margin-top: 40px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn.primary {
+            background: var(--accent);
+            color: #020617;
+            box-shadow: 0 10px 20px -5px rgba(56, 189, 248, 0.4);
+        }
+
+        .btn.secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.1);
+        }
+
+        /* SECTIONS */
+        section { padding: 100px 10%; }
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--accent);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        /* GLASS CARD & ABOUT */
+        .glass {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 40px;
+        }
+
+        .skills-container {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-tag {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+
+        /* PROJECTS GRID */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(30, 41, 59, 0.8);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .project-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tags span {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* CONTACT */
+        .contact-card {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-link {
+            display: block;
+            font-size: 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+
+        /* REVEAL ANIMATION */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1s all cubic-bezier(0.17, 0.55, 0.55, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 15px 5%; }
+            .nav-links { display: none; } /* Simplified for mobile */
+            section { padding: 80px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Burhan<span>.dev</span></div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="badge">Open for Collaboration</div>
+            <h1>Hi, I'm <span>Burhan</span> 👋</h1>
+            <p>Game Developer • Python Programmer • Aspiring Software Engineer</p>
+            <div class="hero-btns">
+                <button class="btn primary" onclick="scrollToSection('projects')">View My Work</button>
+                <button class="btn secondary" onclick="scrollToSection('contact')">Get In Touch</button>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="reveal">
+        <h2>About Me</h2>
+        <div class="glass">
+            <p>I am a student with a deep passion for understanding the "how" behind the games I love. My journey started with a simple curiosity, which led me to dive deep into game development through online resources and constant experimentation.</p>
+            <p style="margin-top: 15px;">I enjoy the challenge of problem-solving through code and am currently building my skills in both front-end web development and game logic.</p>
+            
+            <div class="skills-container">
+                <div class="skill-tag">Python</div>
+                <div class="skill-tag">C# (Unity)</div>
+                <div class="skill-tag">HTML5 / CSS3</div>
+                <div class="skill-tag">C Programming</div>
+                <div class="skill-tag">Game Design</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="reveal">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div>
+                    <h3>🍎 Apple In The Basket</h3>
+                    <p>A fun, casual arcade game built in Unity. Focused on smooth fruit-catching mechanics and score systems.</p>
+                </div>
+                <div class="project-footer">
+                    <div class="tags"><span>Unity • C#</span></div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <h3>🎮 Unity 2D Platformer</h3>
+                    <p>A classic platforming experience with custom physics, character movement, and level design.</p>
+                </div>
+                <div class="project-footer">
+                    <div class="tags"><span>Unity • Physics</span></div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <h3>🧠 Puzzle Logic Game</h3>
+                    <p>A game designed to challenge the brain using clever level layouts and interactive puzzle elements.</p>
+                </div>
+                <div class="project-footer">
+                    <div class="tags"><span>Game Design • C#</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="reveal">
+        <h2>Contact</h2>
+        <div class="glass contact-card">
+            <p>I'm always looking for new opportunities and connections.</p>
+            <a href="mailto:aqibkhan95519@gmail.com" class="contact-link">aqibkhan95519@gmail.com</a>
+            <p style="color: var(--text-dim);">Find me on GitHub: <strong>Burhan-gamedev</strong></p>
+            <p style="color: var(--text-dim);">Fiverr: <strong>@burhan2dev</strong></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Burhan • Built with ❤️ and Code</p>
+    </footer>
+
+    <script>
+        // Smooth Scrolling Function
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+
+        // Modern Intersection Observer for Scroll Animations
+        const observerOptions = {
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        // Apply observer to all sections with .reveal class
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
